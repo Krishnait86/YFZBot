@@ -17,6 +17,10 @@ namespace YFBot {
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
 
+        private int weaponTimer;
+        private int Timer;
+        private Stopwatch watch;
+
         private bool fwd = true;
 
         private bool rgt = true;
@@ -25,8 +29,9 @@ namespace YFBot {
 
         public MainForm() {
             InitializeComponent();
-            LogicListBox.SelectedIndex = 0;
+            LogicListBox.SelectedIndex = 1;
             strategy = new Strategy();
+            watch = new Stopwatch();
         }
 
         private void buttonGetProcesses_Click(object sender, EventArgs e) {
@@ -47,6 +52,7 @@ namespace YFBot {
 
         private void buttonStart_Click(object sender, EventArgs e) {
 
+            weaponTimer = Int32.Parse(textBox1.Text);
             checkBox.Checked = true;
             processList = Process.GetProcesses();
             foreach (Process instence in processList)
@@ -82,13 +88,19 @@ namespace YFBot {
             while (checkBox.Checked &&
                     GetForegroundWindow() == targetProcess.MainWindowHandle)
             {
+                if ((int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0)
+                {
+                    Keyboard.KeyDown(Keys.D1);
+                    Keyboard.KeyUp(Keys.D1);
+                }
+
                 switch(LogicListBox.SelectedItem)
                 {
                     case "attackLogic":
                         fwd = await strategy.attackLogic(fwd);
                         break;
                     case "defendLogic":
-                        fwd = await strategy.defendLogic(fwd);
+                        fwd = await strategy.defendLogic();
                         break;
                 }
             }
