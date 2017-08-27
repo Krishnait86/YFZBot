@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
+
 namespace YFBot.Capture {
     public partial class CaptureForm : Form {
         public Process targetProcess { get; set; } 
@@ -12,10 +13,10 @@ namespace YFBot.Capture {
         public CaptureForm() {
             InitializeComponent();
 
-            // делаем рабочую областьо окна прозрачной
-            AllowTransparency = true;
-            BackColor = Color.Green;
-            TransparencyKey = BackColor;
+            //// делаем рабочую областьо окна прозрачной
+            //AllowTransparency = true;
+            //BackColor = Color.Green;
+            //TransparencyKey = BackColor;
         }
 
 
