@@ -105,6 +105,7 @@
             this.maskedTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.maskedTextBox.Size = new System.Drawing.Size(29, 20);
             this.maskedTextBox.TabIndex = 9;
+            this.maskedTextBox.Text = "25";
             this.maskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.maskedTextBox.ValidatingType = typeof(int);
             // 

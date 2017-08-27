@@ -48,7 +48,17 @@ namespace YFBot
                 case "Start":
                     try { weaponTimer = Int32.Parse(maskedTextBox.Text); }
                     catch (FormatException) { weaponTimer = 0; }
-                    progressWeapon.Maximum = weaponTimer - 1;
+
+                    try
+                    {
+                        weaponTimer = Int32.Parse(maskedTextBox.Text);
+                        progressWeapon.Maximum = weaponTimer - 1;
+                    }
+                    catch (FormatException)
+                    {
+                        weaponTimer = 0;
+                        progressWeapon.Maximum = weaponTimer + 1;
+                    }
 
                     processList = Process.GetProcesses();
                     foreach (Process instence in processList)
@@ -98,7 +108,7 @@ namespace YFBot
 
         private void timerWeapon_Tick(object sender, EventArgs e)
         {
-            if (active)
+            if (active && weaponTimer > 0)
             {
                 int cooldown = (int)(watch.ElapsedMilliseconds / 1000) % weaponTimer;
 

@@ -38,16 +38,16 @@ namespace YFBot
             await Task.Delay(new Random().Next(3000));
             //Keyboard.KeyDown(Keys.D1);
 
-            // вперед или назад (вперед) до 3 секунд
-            if (new Random().Next(13) > 8)
+            // вперед или назад (вперед если рандом > 7) до 3 секунд
+            if (new Random().Next(9) > 7)
             {
                 move.Go(Direction.Stop);
                 move.Go(Direction.Forward);
 
                 await Task.Delay(new Random().Next(3000));
 
-                // вперед - вправо или влево (вправо) до 2,4 секунд
-                if (new Random().Next(12) > 6)
+                // вперед - вправо или влево (вправо если рандом больше 7) до 2,4 секунд
+                if (new Random().Next(12) > 7)
                 {
                     move.Go(Direction.Right);
                 }
