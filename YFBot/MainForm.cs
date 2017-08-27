@@ -2,13 +2,13 @@
 using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using InputManager;
 
-namespace YFBot
-{
-    public partial class MainForm : Form
-    {
+namespace YFBot {
+    public partial class MainForm : Form {
         public Process[] processList { get; set; }
+
         public Process targetProcess;
 
         [DllImport("user32.dll")]
@@ -18,66 +18,85 @@ namespace YFBot
         public static extern IntPtr GetForegroundWindow();
 
         private int weaponTimer;
+        private int Timer;
         private Stopwatch watch;
 
-        private bool fwd;
-        private bool active;
+        private bool fwd = true;
+
+        private bool rgt = true;
 
         Strategy strategy;
 
-        public MainForm()
-        {
+        public MainForm() {
             InitializeComponent();
             LogicListBox.SelectedIndex = 1;
             strategy = new Strategy();
             watch = new Stopwatch();
-
-            active = false;
-            fwd = true;
         }
 
-        private void buttonStart_Click(object sender, EventArgs e)
-        {
+        private void buttonGetProcesses_Click(object sender, EventArgs e) {
 
-            switch (buttonAction.Text)
+            checkBox.Checked = true;
+            processList = Process.GetProcesses();
+            foreach (Process instence in processList)
             {
-                case "Stop":
-                    active = false;
-                    buttonAction.Text = "Start";
-                    break;
-                case "Start":
-                    try { weaponTimer = Int32.Parse(maskedTextBox.Text); }
-                    catch (FormatException) { weaponTimer = 0; }
-                    progressWeapon.Maximum = weaponTimer - 1;
 
-                    processList = Process.GetProcesses();
-                    foreach (Process instence in processList)
-                    {
-                        if (instence.ProcessName.Contains("Crossout"))
-                        {
-                            targetProcess = instence;
-                            toolGameFindStatus.Text = "Looking for: " + targetProcess.MainWindowTitle;
-                            SetForegroundWindow(targetProcess.MainWindowHandle);
-                            active = true;
-                        }
-                    }
-                    timer.Enabled = true;
-                    buttonAction.Text = "Stop";
-                    break;
+                if (instence.ProcessName.Contains("Crossout") && checkBox.Checked)
+                {
+                    targetProcess = instence;
+                }
             }
+
+            labelInfo.Text = "Game: " + targetProcess.MainWindowTitle;
+        }
+
+        private void buttonStart_Click(object sender, EventArgs e) {
+
+            weaponTimer = Int32.Parse(timerTextBox.Text);
+            checkBox.Checked = true;
+            processList = Process.GetProcesses();
+            foreach (Process instence in processList)
+            {
+
+                if (instence.ProcessName.Contains("Crossout") && checkBox.Checked)
+                {
+                    targetProcess = instence;
+                }
+            }
+
+            labelInfo.Text = "Game: " + targetProcess.MainWindowTitle;
+
+            SetForegroundWindow(targetProcess.MainWindowHandle);
+            timer.Enabled = true;
+            checkBox.Checked = true;
+
+            buttonStart.Visible = false;
+            buttonStop.Visible = true;
+        }
+
+        private void buttonStop_Click(object sender, EventArgs e)
+        {
+            buttonStart.Visible = true;
+            checkBox.Checked = false;
+            buttonStop.Visible = false;
         }
 
         private async void timer_Tick(object sender, EventArgs e)
         {
-            watch.Start();
             timer.Enabled = false;
 
-            while (active && GetForegroundWindow() == targetProcess.MainWindowHandle)
+            while (checkBox.Checked &&
+                    GetForegroundWindow() == targetProcess.MainWindowHandle)
             {
-                maskedTextBox.Enabled = false;
-                LogicListBox.Enabled = false;
+                timerTextBox.Enabled = false;
 
-                switch (LogicListBox.SelectedItem)
+                if ( weaponTimer > 0 && (int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0)
+                {
+                    Keyboard.KeyDown(Keys.D1);
+                    Keyboard.KeyUp(Keys.D1);
+                }
+
+                switch(LogicListBox.SelectedItem)
                 {
                     case "attackLogic":
                         fwd = await strategy.attackLogic(fwd);
@@ -89,26 +108,11 @@ namespace YFBot
                 toolGameFindStatus.Text = targetProcess.MainWindowTitle;
             }
 
-            watch.Stop();
             timer.Enabled = true;
-            toolGameFindStatus.Text = "Waiting for process...";
-            maskedTextBox.Enabled = true;
-            LogicListBox.Enabled = true;
+            toolGameFindStatus.Text = "Waiting process...";
+            timerTextBox.Enabled = true;
         }
 
-        private void timerWeapon_Tick(object sender, EventArgs e)
-        {
-            if (active)
-            {
-                int cooldown = (int)(watch.ElapsedMilliseconds / 1000) % weaponTimer;
-
-                progressWeapon.Value = cooldown;
-                if (weaponTimer > 0 && cooldown == 0)
-                {
-                    Keyboard.KeyDown(Keys.D1);
-                    Keyboard.KeyUp(Keys.D1);
-                }
-            }
-        }
+        
     }
 }
