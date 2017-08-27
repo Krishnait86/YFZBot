@@ -101,8 +101,10 @@ namespace YFBot {
         }
 
         private void openCaptureWindowToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(!captureForm.Visible)
+            if (!captureForm.Visible) {
                 captureForm.Show();
+                captureForm.targetProcess = targetProcess;
+            }            
         }
     }
 }
