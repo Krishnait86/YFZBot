@@ -12,10 +12,10 @@ namespace YFBot.Capture {
         public CaptureForm() {
             InitializeComponent();
 
-            // // делаем рабочую областьо окна прозрачной
-            // AllowTransparency = true;
-            // BackColor = Color.Green;
-            // TransparencyKey = BackColor;
+            // делаем рабочую областьо окна прозрачной
+            AllowTransparency = true;
+            BackColor = Color.Green;
+            TransparencyKey = BackColor;
         }
 
 
@@ -28,13 +28,16 @@ namespace YFBot.Capture {
         private void timer_Tick(object sender, EventArgs e) {
             if (targetProcess != null) {
                 Bitmap bmp = CaptureApplication(targetProcess);
+
+                // Решение проблемы с утечкой GDI
+                if (captureBox.Image != null)
+                    captureBox.Image.Dispose();
                 captureBox.Image = new Bitmap(bmp, new Size(bmp.Width / 2, bmp.Height / 2));
 
-                Height = captureBox.Image.Height+36;
-                Width = captureBox.Image.Width+14;
+                Height = captureBox.Image.Height + 36;
+                Width = captureBox.Image.Width + 14;
 
                 bmp.Dispose();
-                //captureBox.Image.Dispose();
             }
         }
 
@@ -51,6 +54,8 @@ namespace YFBot.Capture {
             Graphics graphics = Graphics.FromImage(bmp);
             graphics.CopyFromScreen(rect.left, rect.top, 0, 0, new Size(width, height), CopyPixelOperation.SourceCopy);
 
+            // Решение проблемы с утечкой GDI
+            graphics.Dispose();
             return bmp;
         }
 
@@ -65,6 +70,10 @@ namespace YFBot.Capture {
 
             [DllImport("user32.dll")]
             public static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
-        }     
+        }
+
+        private void captureBox_Click(object sender, EventArgs e) {
+
+        }
     }
 }

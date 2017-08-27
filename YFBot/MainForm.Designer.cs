@@ -26,17 +26,17 @@
             this.components = new System.ComponentModel.Container();
             this.LogicListBox = new System.Windows.Forms.ComboBox();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.labelInfo = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.buttonStop = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolGameFindStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timerTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openCaptureWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerTextBox = new System.Windows.Forms.TextBox();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,16 +61,6 @@
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
-            // 
-            // labelInfo
-            // 
-            this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(12, 99);
-            this.labelInfo.MaximumSize = new System.Drawing.Size(150, 0);
-            this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(84, 13);
-            this.labelInfo.TabIndex = 4;
-            this.labelInfo.Text = "Select And Start";
             // 
             // timer
             // 
@@ -108,14 +98,6 @@
             this.toolGameFindStatus.Size = new System.Drawing.Size(100, 17);
             this.toolGameFindStatus.Text = "Waiting process...";
             // 
-            // timerTextBox
-            // 
-            this.timerTextBox.Location = new System.Drawing.Point(94, 67);
-            this.timerTextBox.Name = "timerTextBox";
-            this.timerTextBox.Size = new System.Drawing.Size(29, 20);
-            this.timerTextBox.TabIndex = 9;
-            this.timerTextBox.Text = "0";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -151,6 +133,24 @@
             this.openCaptureWindowToolStripMenuItem.Text = "Open Capture Window";
             this.openCaptureWindowToolStripMenuItem.Click += new System.EventHandler(this.openCaptureWindowToolStripMenuItem_Click);
             // 
+            // timerTextBox
+            // 
+            this.timerTextBox.Location = new System.Drawing.Point(94, 67);
+            this.timerTextBox.Name = "timerTextBox";
+            this.timerTextBox.Size = new System.Drawing.Size(29, 20);
+            this.timerTextBox.TabIndex = 9;
+            this.timerTextBox.Text = "0";
+            // 
+            // labelInfo
+            // 
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Location = new System.Drawing.Point(12, 99);
+            this.labelInfo.MaximumSize = new System.Drawing.Size(150, 0);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(84, 13);
+            this.labelInfo.TabIndex = 4;
+            this.labelInfo.Text = "Select And Start";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,17 +183,17 @@
 
         private System.Windows.Forms.ComboBox LogicListBox;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button buttonStop;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolGameFindStatus;
-        private System.Windows.Forms.TextBox timerTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openCaptureWindowToolStripMenuItem;
+        private System.Windows.Forms.TextBox timerTextBox;
+        private System.Windows.Forms.Label labelInfo;
     }
 }
 

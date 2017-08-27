@@ -31,16 +31,19 @@
             // 
             // captureBox
             // 
+            this.captureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.captureBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.captureBox.Location = new System.Drawing.Point(0, 0);
             this.captureBox.Name = "captureBox";
             this.captureBox.Size = new System.Drawing.Size(523, 327);
             this.captureBox.TabIndex = 0;
             this.captureBox.TabStop = false;
+            this.captureBox.Click += new System.EventHandler(this.captureBox_Click);
             // 
             // timer
             // 
             this.timer.Enabled = true;
+            this.timer.Interval = 50;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // CaptureForm
