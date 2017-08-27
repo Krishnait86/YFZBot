@@ -25,9 +25,7 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.LogicListBox = new System.Windows.Forms.ComboBox();
-            this.buttonGetProcesses = new System.Windows.Forms.Button();
             this.buttonStart = new System.Windows.Forms.Button();
-            this.checkBox = new System.Windows.Forms.CheckBox();
             this.labelInfo = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.buttonStop = new System.Windows.Forms.Button();
@@ -36,7 +34,11 @@
             this.toolGameFindStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openCaptureWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogicListBox
@@ -45,25 +47,14 @@
             this.LogicListBox.Items.AddRange(new object[] {
             "attackLogic",
             "defendLogic"});
-            this.LogicListBox.Location = new System.Drawing.Point(9, 9);
+            this.LogicListBox.Location = new System.Drawing.Point(12, 35);
             this.LogicListBox.Name = "LogicListBox";
             this.LogicListBox.Size = new System.Drawing.Size(149, 21);
             this.LogicListBox.TabIndex = 0;
             // 
-            // buttonGetProcesses
-            // 
-            this.buttonGetProcesses.Location = new System.Drawing.Point(167, 9);
-            this.buttonGetProcesses.Name = "buttonGetProcesses";
-            this.buttonGetProcesses.Size = new System.Drawing.Size(85, 26);
-            this.buttonGetProcesses.TabIndex = 1;
-            this.buttonGetProcesses.Text = "Power On";
-            this.buttonGetProcesses.UseVisualStyleBackColor = true;
-            this.buttonGetProcesses.Visible = false;
-            this.buttonGetProcesses.Click += new System.EventHandler(this.buttonGetProcesses_Click);
-            // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(167, 64);
+            this.buttonStart.Location = new System.Drawing.Point(170, 90);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(85, 26);
             this.buttonStart.TabIndex = 3;
@@ -71,21 +62,10 @@
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
-            // checkBox
-            // 
-            this.checkBox.AutoSize = true;
-            this.checkBox.Location = new System.Drawing.Point(167, 41);
-            this.checkBox.Name = "checkBox";
-            this.checkBox.Size = new System.Drawing.Size(87, 17);
-            this.checkBox.TabIndex = 2;
-            this.checkBox.Text = "    Ready      ";
-            this.checkBox.UseVisualStyleBackColor = true;
-            this.checkBox.Visible = false;
-            // 
             // labelInfo
             // 
             this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(9, 73);
+            this.labelInfo.Location = new System.Drawing.Point(12, 99);
             this.labelInfo.MaximumSize = new System.Drawing.Size(150, 0);
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(84, 13);
@@ -98,7 +78,7 @@
             // 
             // buttonStop
             // 
-            this.buttonStop.Location = new System.Drawing.Point(167, 64);
+            this.buttonStop.Location = new System.Drawing.Point(170, 90);
             this.buttonStop.Name = "buttonStop";
             this.buttonStop.Size = new System.Drawing.Size(85, 26);
             this.buttonStop.TabIndex = 5;
@@ -111,9 +91,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolGameFindStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 98);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 126);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(259, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(266, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -130,7 +110,7 @@
             // 
             // timerTextBox
             // 
-            this.timerTextBox.Location = new System.Drawing.Point(91, 41);
+            this.timerTextBox.Location = new System.Drawing.Point(94, 67);
             this.timerTextBox.Name = "timerTextBox";
             this.timerTextBox.Size = new System.Drawing.Size(29, 20);
             this.timerTextBox.TabIndex = 9;
@@ -139,34 +119,61 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 44);
+            this.label1.Location = new System.Drawing.Point(9, 70);
             this.label1.MaximumSize = new System.Drawing.Size(150, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Weapon timer :";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(266, 24);
+            this.menuStrip1.TabIndex = 11;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openCaptureWindowToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // openCaptureWindowToolStripMenuItem
+            // 
+            this.openCaptureWindowToolStripMenuItem.Name = "openCaptureWindowToolStripMenuItem";
+            this.openCaptureWindowToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.openCaptureWindowToolStripMenuItem.Text = "Open Capture Window";
+            this.openCaptureWindowToolStripMenuItem.Click += new System.EventHandler(this.openCaptureWindowToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(259, 120);
+            this.ClientSize = new System.Drawing.Size(266, 148);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.timerTextBox);
             this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.labelInfo);
-            this.Controls.Add(this.checkBox);
-            this.Controls.Add(this.buttonGetProcesses);
             this.Controls.Add(this.LogicListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YFZBot";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,9 +182,7 @@
         #endregion
 
         private System.Windows.Forms.ComboBox LogicListBox;
-        private System.Windows.Forms.Button buttonGetProcesses;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.CheckBox checkBox;
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button buttonStop;
@@ -186,6 +191,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolGameFindStatus;
         private System.Windows.Forms.TextBox timerTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openCaptureWindowToolStripMenuItem;
     }
 }
 

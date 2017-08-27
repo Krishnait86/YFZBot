@@ -4,11 +4,11 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using InputManager;
+using YFBot.Capture;
 
 namespace YFBot {
     public partial class MainForm : Form {
         public Process[] processList { get; set; }
-
         public Process targetProcess;
 
         [DllImport("user32.dll")]
@@ -18,57 +18,45 @@ namespace YFBot {
         public static extern IntPtr GetForegroundWindow();
 
         private int weaponTimer;
-        private int Timer;
         private Stopwatch watch;
 
-        private bool fwd = true;
-
-        private bool rgt = true;
+        private bool fwd;
+        private bool active;
 
         Strategy strategy;
+
+        private CaptureForm captureForm;
 
         public MainForm() {
             InitializeComponent();
             LogicListBox.SelectedIndex = 1;
             strategy = new Strategy();
             watch = new Stopwatch();
-        }
+            captureForm = new CaptureForm();
 
-        private void buttonGetProcesses_Click(object sender, EventArgs e) {
+            active = false;
 
-            checkBox.Checked = true;
-            processList = Process.GetProcesses();
-            foreach (Process instence in processList)
-            {
-
-                if (instence.ProcessName.Contains("Crossout") && checkBox.Checked)
-                {
-                    targetProcess = instence;
-                }
-            }
-
-            labelInfo.Text = "Game: " + targetProcess.MainWindowTitle;
+            fwd = true;
         }
 
         private void buttonStart_Click(object sender, EventArgs e) {
 
             weaponTimer = Int32.Parse(timerTextBox.Text);
-            checkBox.Checked = true;
+            
             processList = Process.GetProcesses();
             foreach (Process instence in processList)
             {
 
-                if (instence.ProcessName.Contains("Crossout") && checkBox.Checked)
+                if (instence.ProcessName.Contains("Crossout"))
                 {
                     targetProcess = instence;
+                    labelInfo.Text = "Game: " + targetProcess.MainWindowTitle;
+                    SetForegroundWindow(targetProcess.MainWindowHandle);
+                    active = true;
                 }
             }
-
-            labelInfo.Text = "Game: " + targetProcess.MainWindowTitle;
-
-            SetForegroundWindow(targetProcess.MainWindowHandle);
+            
             timer.Enabled = true;
-            checkBox.Checked = true;
 
             buttonStart.Visible = false;
             buttonStop.Visible = true;
@@ -77,7 +65,7 @@ namespace YFBot {
         private void buttonStop_Click(object sender, EventArgs e)
         {
             buttonStart.Visible = true;
-            checkBox.Checked = false;
+            active = false;
             buttonStop.Visible = false;
         }
 
@@ -85,8 +73,7 @@ namespace YFBot {
         {
             timer.Enabled = false;
 
-            while (checkBox.Checked &&
-                    GetForegroundWindow() == targetProcess.MainWindowHandle)
+            while (active && GetForegroundWindow() == targetProcess.MainWindowHandle)
             {
                 timerTextBox.Enabled = false;
 
@@ -113,6 +100,9 @@ namespace YFBot {
             timerTextBox.Enabled = true;
         }
 
-        
+        private void openCaptureWindowToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(!captureForm.Visible)
+                captureForm.Show();
+        }
     }
 }
