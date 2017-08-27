@@ -1,9 +1,6 @@
-﻿using InputManager;
-using System;
+﻿using System;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using YFBot.Movement;
-
 
 namespace YFBot
 {
@@ -20,14 +17,10 @@ namespace YFBot
             //Keyboard.KeyDown(Keys.D1);
             if (fwd)
             {
-                // Keyboard.KeyUp(Keys.S);
-                // Keyboard.KeyDown(Keys.W);
                 move.Go(Direction.Forward);
             }
             else
             {
-                // Keyboard.KeyUp(Keys.W);
-                // Keyboard.KeyDown(Keys.S);
                 move.Go(Direction.Backward);
             }
 
@@ -39,48 +32,31 @@ namespace YFBot
 
         public async Task<bool> defendLogic()
         {
-            // Keyboard.KeyUp(Keys.A);
-            // Keyboard.KeyUp(Keys.D);
-            // Keyboard.KeyUp(Keys.S);
-            // Keyboard.KeyDown(Keys.W);
             move.Go(Direction.Stop);
             move.Go(Direction.Forward);
-
 
             await Task.Delay(new Random().Next(3000));
             //Keyboard.KeyDown(Keys.D1);
 
             // вперед или назад (вперед) до 3 секунд
-            if (new Random().Next(13) > 7)
+            if (new Random().Next(13) > 8)
             {
-                // Keyboard.KeyUp(Keys.A);
-                // Keyboard.KeyUp(Keys.D);
-                // Keyboard.KeyUp(Keys.S);
-                // Keyboard.KeyDown(Keys.W);
                 move.Go(Direction.Stop);
                 move.Go(Direction.Forward);
 
                 await Task.Delay(new Random().Next(3000));
 
-                // вперед - вправо или влево (вправо) до 2,5 секунд
+                // вперед - вправо или влево (вправо) до 2,4 секунд
                 if (new Random().Next(12) > 6)
                 {
-                    // Keyboard.KeyUp(Keys.A);
-                    // Keyboard.KeyDown(Keys.D);
                     move.Go(Direction.Right);
                 }
                 else
                 {
-                    // Keyboard.KeyUp(Keys.D);
-                    // Keyboard.KeyDown(Keys.A);
                     move.Go(Direction.Left);
                 }
-                await Task.Delay(new Random().Next(2500));
+                await Task.Delay(new Random().Next(2400));
 
-                // Keyboard.KeyUp(Keys.A);
-                // Keyboard.KeyUp(Keys.D);
-                // Keyboard.KeyUp(Keys.S);
-                // Keyboard.KeyDown(Keys.W);
                 move.Go(Direction.Stop);
                 move.Go(Direction.Forward);
 
@@ -88,23 +64,15 @@ namespace YFBot
             }
             else
             {
-                // Keyboard.KeyUp(Keys.A);
-                // Keyboard.KeyUp(Keys.D);
-                // Keyboard.KeyUp(Keys.W);
-                // Keyboard.KeyDown(Keys.S);
                 move.Go(Direction.Stop);
                 move.Go(Direction.Backward);
 
                 if (new Random().Next(12) > 6)
                 {
-                    // Keyboard.KeyUp(Keys.A);
-                    // Keyboard.KeyDown(Keys.D);
                     move.Go(Direction.Right);
                 }
                 else
                 {
-                    // Keyboard.KeyUp(Keys.D);
-                    // Keyboard.KeyDown(Keys.A);
                     move.Go(Direction.Left);
                 }
             }
