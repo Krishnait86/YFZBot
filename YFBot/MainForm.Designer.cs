@@ -31,7 +31,12 @@
             this.labelInfo = new System.Windows.Forms.Label();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.buttonStop = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolGameFindStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timerTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogicListBox
@@ -101,20 +106,54 @@
             this.buttonStop.UseVisualStyleBackColor = true;
             this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
             // 
-            // textBox1
+            // statusStrip1
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 41);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Text = "0";
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.toolGameFindStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 98);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(259, 22);
+            this.statusStrip1.TabIndex = 8;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolGameFindStatus
+            // 
+            this.toolGameFindStatus.Name = "toolGameFindStatus";
+            this.toolGameFindStatus.Size = new System.Drawing.Size(100, 17);
+            this.toolGameFindStatus.Text = "Waiting process...";
+            // 
+            // timerTextBox
+            // 
+            this.timerTextBox.Location = new System.Drawing.Point(91, 41);
+            this.timerTextBox.Name = "timerTextBox";
+            this.timerTextBox.Size = new System.Drawing.Size(29, 20);
+            this.timerTextBox.TabIndex = 9;
+            this.timerTextBox.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 44);
+            this.label1.MaximumSize = new System.Drawing.Size(150, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Weapon timer :";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(259, 100);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(259, 120);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.timerTextBox);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.buttonStop);
             this.Controls.Add(this.labelInfo);
@@ -126,6 +165,8 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YFZBot";
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -140,7 +181,11 @@
         private System.Windows.Forms.Label labelInfo;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Button buttonStop;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolGameFindStatus;
+        private System.Windows.Forms.TextBox timerTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }
 

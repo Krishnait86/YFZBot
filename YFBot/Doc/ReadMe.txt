@@ -1,0 +1,1 @@
+﻿1. При возникновении проблем с референсом InputManager: InputManager.dll находится по пути */Repo/InputManager

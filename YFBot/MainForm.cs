@@ -52,7 +52,7 @@ namespace YFBot {
 
         private void buttonStart_Click(object sender, EventArgs e) {
 
-            weaponTimer = Int32.Parse(textBox1.Text);
+            weaponTimer = Int32.Parse(timerTextBox.Text);
             checkBox.Checked = true;
             processList = Process.GetProcesses();
             foreach (Process instence in processList)
@@ -88,7 +88,9 @@ namespace YFBot {
             while (checkBox.Checked &&
                     GetForegroundWindow() == targetProcess.MainWindowHandle)
             {
-                if ((int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0)
+                timerTextBox.Enabled = false;
+
+                if ( weaponTimer > 0 && (int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0)
                 {
                     Keyboard.KeyDown(Keys.D1);
                     Keyboard.KeyUp(Keys.D1);
@@ -103,9 +105,12 @@ namespace YFBot {
                         fwd = await strategy.defendLogic();
                         break;
                 }
+                toolGameFindStatus.Text = targetProcess.MainWindowTitle;
             }
 
             timer.Enabled = true;
+            toolGameFindStatus.Text = "Waiting process...";
+            timerTextBox.Enabled = true;
         }
 
         
