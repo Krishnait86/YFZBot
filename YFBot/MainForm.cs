@@ -46,7 +46,6 @@ namespace YFBot
                     buttonAction.Text = "Start";
                     break;
                 case "Start":
-<<<<<<< HEAD
                     try { weaponTimer = Int32.Parse(maskedTextBox.Text); }
                     catch (FormatException) { weaponTimer = 0; }
 
@@ -60,17 +59,6 @@ namespace YFBot
                         weaponTimer = 0;
                         progressWeapon.Maximum = weaponTimer + 1;
                     }
-=======
-                    try {
-                        weaponTimer = Int32.Parse(maskedTextBox.Text);
-                        progressWeapon.Maximum = weaponTimer - 1;
-                    }
-                    catch (FormatException) {
-                        weaponTimer = 0;
-                        progressWeapon.Maximum = weaponTimer + 1;
-                    }
-                    
->>>>>>> b146a796df1e46816d7ef368d555806d62df6b63
 
                     processList = Process.GetProcesses();
                     foreach (Process instence in processList)
