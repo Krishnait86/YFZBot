@@ -136,7 +136,7 @@
             this.Location = new System.Drawing.Point(520, 820);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YFZBot";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
