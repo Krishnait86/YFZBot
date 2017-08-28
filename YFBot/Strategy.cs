@@ -14,7 +14,6 @@ namespace YFBot
 
         public async Task<bool> attackLogic(bool fwd)
         {
-            //Keyboard.KeyDown(Keys.D1);
             if (fwd)
             {
                 move.Go(Direction.Forward);
@@ -25,7 +24,6 @@ namespace YFBot
             }
 
             await Task.Delay(3000);
-            //Keyboard.KeyUp(Keys.D1);
             await Task.Delay(1000);
             return !fwd;
         }
@@ -36,7 +34,6 @@ namespace YFBot
             move.Go(Direction.Forward);
 
             await Task.Delay(new Random().Next(3000));
-            //Keyboard.KeyDown(Keys.D1);
 
             // вперед или назад (вперед если рандом > 7) до 3 секунд
             if (new Random().Next(9) > 7)
@@ -78,8 +75,6 @@ namespace YFBot
             }
 
             await Task.Delay(new Random().Next(4000));
-            //Keyboard.KeyUp(Keys.D1);
-            //await Task.Delay(1000);
             return true;
         }
     }

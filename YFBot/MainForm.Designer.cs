@@ -34,6 +34,7 @@
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.progressWeapon = new System.Windows.Forms.ProgressBar();
             this.timerWeapon = new System.Windows.Forms.Timer(this.components);
+            this.cmdLoadScript = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +43,8 @@
             this.LogicListBox.FormattingEnabled = true;
             this.LogicListBox.Items.AddRange(new object[] {
             "attackLogic",
-            "defendLogic"});
+            "defendLogic",
+            "customScript"});
             this.LogicListBox.Location = new System.Drawing.Point(9, 9);
             this.LogicListBox.Name = "LogicListBox";
             this.LogicListBox.Size = new System.Drawing.Size(149, 21);
@@ -121,11 +123,22 @@
             this.timerWeapon.Enabled = true;
             this.timerWeapon.Tick += new System.EventHandler(this.timerWeapon_Tick);
             // 
+            // cmdLoadScript
+            // 
+            this.cmdLoadScript.Location = new System.Drawing.Point(167, 9);
+            this.cmdLoadScript.Name = "cmdLoadScript";
+            this.cmdLoadScript.Size = new System.Drawing.Size(85, 26);
+            this.cmdLoadScript.TabIndex = 12;
+            this.cmdLoadScript.Text = "LoadScript";
+            this.cmdLoadScript.UseVisualStyleBackColor = true;
+            this.cmdLoadScript.Click += new System.EventHandler(this.cmdLoadScript_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(259, 120);
+            this.Controls.Add(this.cmdLoadScript);
             this.Controls.Add(this.progressWeapon);
             this.Controls.Add(this.maskedTextBox);
             this.Controls.Add(this.label1);
@@ -136,7 +149,7 @@
             this.Location = new System.Drawing.Point(520, 820);
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "YFZBot";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -157,6 +170,7 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.ProgressBar progressWeapon;
         private System.Windows.Forms.Timer timerWeapon;
+        private System.Windows.Forms.Button cmdLoadScript;
     }
 }
 

@@ -3,12 +3,14 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using InputManager;
+using System.IO;
 
 namespace YFBot
 {
     public partial class MainForm : Form
     {
         public Process[] processList { get; set; }
+
         public Process targetProcess;
 
         [DllImport("user32.dll")]
@@ -23,7 +25,8 @@ namespace YFBot
         private bool fwd;
         private bool active;
 
-        Strategy strategy;
+        private Strategy strategy;
+        private ScriptWorker.ScriptWorker scriptWorker;
 
         public MainForm()
         {
@@ -31,6 +34,7 @@ namespace YFBot
             LogicListBox.SelectedIndex = 1;
             strategy = new Strategy();
             watch = new Stopwatch();
+            scriptWorker = new ScriptWorker.ScriptWorker();
 
             active = false;
             fwd = true;
@@ -95,6 +99,9 @@ namespace YFBot
                     case "defendLogic":
                         fwd = await strategy.defendLogic();
                         break;
+                    case "customScript":
+                        fwd = await scriptWorker.LoadScript();
+                        break;
                 }
                 toolGameFindStatus.Text = targetProcess.MainWindowTitle;
             }
@@ -119,6 +126,16 @@ namespace YFBot
                     Keyboard.KeyUp(Keys.D1);
                 }
             }
+        }
+
+        private void cmdLoadScript_Click(object sender, EventArgs e) {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Open You Script";
+            openFileDialog.Filter = "TXT files|*.txt";
+            openFileDialog.InitialDirectory = @"C:\";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+
+                scriptWorker.FileName = openFileDialog.FileName;
         }
     }
 }
