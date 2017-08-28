@@ -26,6 +26,7 @@ namespace YFBot
         private bool active;
 
         private Strategy strategy;
+        private string scriptFileName;
         private ScriptWorker.ScriptWorker scriptWorker;
 
         public MainForm()
@@ -50,6 +51,10 @@ namespace YFBot
                     buttonAction.Text = "Start";
                     break;
                 case "Start":
+                    if (scriptFileName != null)
+                        scriptWorker.FileName = scriptFileName;
+
+
                     try { weaponTimer = Int32.Parse(maskedTextBox.Text); }
                     catch (FormatException) { weaponTimer = 0; }
 
@@ -132,10 +137,10 @@ namespace YFBot
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Open You Script";
             openFileDialog.Filter = "TXT files|*.txt";
-            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
 
-                scriptWorker.FileName = openFileDialog.FileName;
+                scriptFileName = openFileDialog.FileName;
         }
     }
 }

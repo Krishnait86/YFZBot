@@ -1,0 +1,10 @@
+Back;
+RandomDelay 3000;
+Forward;
+RandomDelay 4000;
+Left;
+Delay 300;
+Right;
+Forward;
+Delay 300;
+Stop;
