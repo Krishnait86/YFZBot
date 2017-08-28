@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using InputManager;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace YFBot
 {
@@ -30,6 +31,7 @@ namespace YFBot
         private Strategy strategy;
         private string scriptFileName;
         private ScriptWorker.ScriptWorker scriptWorker;
+        int cooldown = 0;
 
         public MainForm()
         {
@@ -49,6 +51,7 @@ namespace YFBot
             switch (buttonAction.Text)
             {
                 case "Stop":
+                    watch.Stop();
                     active = false;
                     buttonAction.Text = "Start";
                     break;
@@ -74,7 +77,7 @@ namespace YFBot
                     processList = Process.GetProcesses();
                     foreach (Process instence in processList)
                     {
-                        if (instence.ProcessName.Contains("Crossout"))
+                       if (instence.ProcessName.Contains("Crossout"))
                         {
                             targetProcess = instence;
                             toolGameFindStatus.Text = "Looking for: " + targetProcess.MainWindowTitle;
@@ -82,6 +85,7 @@ namespace YFBot
                             active = true;
                         }
                     }
+                    watch.Start();
                     timer.Enabled = true;
                     buttonAction.Text = "Stop";
                     break;
@@ -90,7 +94,6 @@ namespace YFBot
 
         private async void timer_Tick(object sender, EventArgs e)
         {
-            watch.Start();
             timer.Enabled = false;
 
             while (active && GetForegroundWindow() == targetProcess.MainWindowHandle)
@@ -101,7 +104,7 @@ namespace YFBot
                 switch (LogicListBox.SelectedItem)
                 {
                     case "сruiseLogic":
-                        fwd = await strategy.СruiseLogic(fwd);
+                        fwd = await strategy.cruiseLogic();
                         break;
                     case "defendLogic":
                         fwd = await strategy.defendLogic();
@@ -112,24 +115,24 @@ namespace YFBot
                 }
                 toolGameFindStatus.Text = targetProcess.MainWindowTitle;
             }
-
-            watch.Stop();
+            
             timer.Enabled = true;
             toolGameFindStatus.Text = "Waiting for process...";
             maskedTextBox.Enabled = true;
             LogicListBox.Enabled = true;
         }
 
-        private void timerWeapon_Tick(object sender, EventArgs e)
-        {
-            if (active && weaponTimer > 0)
-            {
-                int cooldown = (int)(watch.ElapsedMilliseconds / 1000) % weaponTimer;
-
+        private async void timerWeapon_Tick(object sender, EventArgs e)
+        {            
+            if (active && weaponTimer > 0) {
+                watch.Start();
+                cooldown = (int)(watch.ElapsedMilliseconds / 1000) % weaponTimer;
                 progressWeapon.Value = cooldown;
+
                 if (weaponTimer > 0 && cooldown == 0)
                 {
                     Keyboard.KeyDown(Keys.D1);
+                    await Task.Delay(100);
                     Keyboard.KeyUp(Keys.D1);
                 }
             }

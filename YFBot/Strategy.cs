@@ -1,5 +1,7 @@
-﻿using System;
+﻿using InputManager;
+using System;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using YFBot.Movement;
 
 namespace YFBot
@@ -12,12 +14,12 @@ namespace YFBot
             move = new Move();
         }
 
-        public async Task<bool> СruiseLogic(bool fwd)
+        public async Task<bool> cruiseLogic()
         {
             move.Go(Direction.Forward);
 
             await Task.Delay(500);
-            return !fwd;
+            return true;
         }
 
         public async Task<bool> defendLogic()
