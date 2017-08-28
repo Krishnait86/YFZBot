@@ -77,22 +77,20 @@ namespace YFBot {
                 timerTextBox.Enabled = false;
 
 
-                //if ( weaponTimer > 0 && (int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0)
-                //{
-                //    Keyboard.KeyDown(Keys.D1);
-                //    Keyboard.KeyUp(Keys.D1);
-                //}
+                if ( weaponTimer > 0 && (int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0) {
+                    Keyboard.KeyDown(Keys.D1);
+                    Keyboard.KeyUp(Keys.D1);
+                }
 
-                // switch(LogicListBox.SelectedItem)
-                // {
-                //     case "attackLogic":
-                //         fwd = await strategy.attackLogic(fwd);
-                //         break;
-                //     case "defendLogic":
-                //         fwd = await strategy.defendLogic();
-                //         break;
-                // }
-                // toolGameFindStatus.Text = targetProcess.MainWindowTitle;
+                switch (LogicListBox.SelectedItem) {
+                    case "attackLogic":
+                        fwd = await strategy.attackLogic(fwd);
+                        break;
+                    case "defendLogic":
+                        fwd = await strategy.defendLogic();
+                        break;
+                }
+                toolGameFindStatus.Text = targetProcess.MainWindowTitle;
 
                 await Task.Delay(100);
             }
