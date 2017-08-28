@@ -17,7 +17,7 @@ namespace YFBot.ScriptWorker {
 
         private string[] pharceFile(string fileName) {
             string pharseFile = System.IO.File.ReadAllText(fileName).Replace("\r\n", "").Trim();
-            return pharseFile.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+            return pharseFile.Split(new string[] { ";", " " }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private async Task<bool> logicWorker(string[] logicScript) {
@@ -39,10 +39,12 @@ namespace YFBot.ScriptWorker {
                         move.Go(Direction.Stop);
                         break;
                     case "Delay":
-                        await Task.Delay(100);
+                        await Task.Delay(Int32.Parse(logicScript[i + 1]));
+                        i++;
                         break;
                     case "RandomDelay":
-                        await Task.Delay(new Random().Next(1000));
+                        await Task.Delay(new Random().Next(Int32.Parse(logicScript[i + 1])));
+                        i++;
                         break;
 
                     default:
