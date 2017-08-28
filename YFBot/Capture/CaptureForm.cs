@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Emgu.CV;
+using Emgu.CV.Structure;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -8,7 +10,9 @@ using System.Windows.Forms;
 
 namespace YFBot.Capture {
     public partial class CaptureForm : Form {
-        public Process targetProcess { get; set; } 
+        public Process targetProcess { get; set; }
+
+
 
         public CaptureForm() {
             InitializeComponent();
@@ -28,17 +32,24 @@ namespace YFBot.Capture {
 
         private void timer_Tick(object sender, EventArgs e) {
             if (targetProcess != null) {
-                Bitmap bmp = CaptureApplication(targetProcess);
+                Image<Bgr, byte> _imgInput;
+                _imgInput = new Image<Bgr, byte>(CaptureApplication(targetProcess));
+
+                Image<Gray, byte> _imgCanny = new Image<Gray, byte>(_imgInput.Width, _imgInput.Height, new Gray(0));
+                _imgCanny = _imgInput.Canny(Double.Parse(textBox1.Text), Double.Parse(textBox2.Text));
+
+
+
 
                 // Решение проблемы с утечкой GDI
                 if (captureBox.Image != null)
                     captureBox.Image.Dispose();
-                captureBox.Image = new Bitmap(bmp, new Size(bmp.Width / 2, bmp.Height / 2));
+                captureBox.Image = new Bitmap(_imgCanny.Bitmap, new Size((int)(_imgCanny.Width * .9), (int)(_imgCanny.Height*.9)));
 
                 Height = captureBox.Image.Height + 36;
                 Width = captureBox.Image.Width + 14;
 
-                bmp.Dispose();
+                _imgInput.Dispose();
             }
         }
 

@@ -49,8 +49,7 @@ namespace YFBot {
 
                 if (instence.ProcessName.Contains("Crossout"))
                 {
-                    targetProcess = instence;
-                    labelInfo.Text = "Game: " + targetProcess.MainWindowTitle;
+                    targetProcess = instence;                    
                     SetForegroundWindow(targetProcess.MainWindowHandle);
                     active = true;
                 }
@@ -77,22 +76,25 @@ namespace YFBot {
             {
                 timerTextBox.Enabled = false;
 
-                if ( weaponTimer > 0 && (int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0)
-                {
-                    Keyboard.KeyDown(Keys.D1);
-                    Keyboard.KeyUp(Keys.D1);
-                }
 
-                switch(LogicListBox.SelectedItem)
-                {
-                    case "attackLogic":
-                        fwd = await strategy.attackLogic(fwd);
-                        break;
-                    case "defendLogic":
-                        fwd = await strategy.defendLogic();
-                        break;
-                }
-                toolGameFindStatus.Text = targetProcess.MainWindowTitle;
+                //if ( weaponTimer > 0 && (int)(watch.ElapsedMilliseconds/1000) % weaponTimer == 0)
+                //{
+                //    Keyboard.KeyDown(Keys.D1);
+                //    Keyboard.KeyUp(Keys.D1);
+                //}
+
+                // switch(LogicListBox.SelectedItem)
+                // {
+                //     case "attackLogic":
+                //         fwd = await strategy.attackLogic(fwd);
+                //         break;
+                //     case "defendLogic":
+                //         fwd = await strategy.defendLogic();
+                //         break;
+                // }
+                // toolGameFindStatus.Text = targetProcess.MainWindowTitle;
+
+                await Task.Delay(100);
             }
 
             timer.Enabled = true;

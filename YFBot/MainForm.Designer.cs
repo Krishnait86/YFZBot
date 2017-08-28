@@ -36,7 +36,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openCaptureWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerTextBox = new System.Windows.Forms.TextBox();
-            this.labelInfo = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -81,9 +82,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolGameFindStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 126);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 160);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(266, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(346, 22);
             this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -114,7 +115,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(266, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(346, 24);
             this.menuStrip1.TabIndex = 11;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -141,28 +142,33 @@
             this.timerTextBox.TabIndex = 9;
             this.timerTextBox.Text = "0";
             // 
-            // labelInfo
+            // textBox1
             // 
-            this.labelInfo.AutoSize = true;
-            this.labelInfo.Location = new System.Drawing.Point(12, 99);
-            this.labelInfo.MaximumSize = new System.Drawing.Size(150, 0);
-            this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(84, 13);
-            this.labelInfo.TabIndex = 4;
-            this.labelInfo.Text = "Select And Start";
+            this.textBox1.Location = new System.Drawing.Point(234, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 12;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(234, 27);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.TabIndex = 13;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 148);
+            this.ClientSize = new System.Drawing.Size(346, 182);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.timerTextBox);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.buttonStop);
-            this.Controls.Add(this.labelInfo);
             this.Controls.Add(this.LogicListBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
@@ -193,7 +199,8 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openCaptureWindowToolStripMenuItem;
         private System.Windows.Forms.TextBox timerTextBox;
-        private System.Windows.Forms.Label labelInfo;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
