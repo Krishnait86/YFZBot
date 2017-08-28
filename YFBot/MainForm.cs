@@ -9,6 +9,8 @@ namespace YFBot
 {
     public partial class MainForm : Form
     {
+        AboutBox aboutBox;
+
         public Process[] processList { get; set; }
 
         public Process targetProcess;
@@ -98,8 +100,8 @@ namespace YFBot
 
                 switch (LogicListBox.SelectedItem)
                 {
-                    case "attackLogic":
-                        fwd = await strategy.attackLogic(fwd);
+                    case "сruiseLogic":
+                        fwd = await strategy.СruiseLogic(fwd);
                         break;
                     case "defendLogic":
                         fwd = await strategy.defendLogic();
@@ -133,14 +135,36 @@ namespace YFBot
             }
         }
 
-        private void cmdLoadScript_Click(object sender, EventArgs e) {
+        private void loadScript_Click(object sender, EventArgs e)
+        {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Open You Script";
             openFileDialog.Filter = "TXT files|*.txt";
             openFileDialog.InitialDirectory = Environment.CurrentDirectory;
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
 
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
                 scriptFileName = openFileDialog.FileName;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (aboutBox != null)
+            {
+                if (!aboutBox.Visible)
+                {
+                    aboutBox.Show();
+                }
+            }
+            else
+            {
+                aboutBox = new AboutBox();
+                aboutBox.Show();
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

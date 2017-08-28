@@ -1,5 +1,4 @@
-﻿
-namespace YFBot.Movement {
+﻿namespace YFBot.Movement {
     public enum Direction {
         Forward,
         Right,

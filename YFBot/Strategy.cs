@@ -12,19 +12,11 @@ namespace YFBot
             move = new Move();
         }
 
-        public async Task<bool> attackLogic(bool fwd)
+        public async Task<bool> СruiseLogic(bool fwd)
         {
-            if (fwd)
-            {
-                move.Go(Direction.Forward);
-            }
-            else
-            {
-                move.Go(Direction.Backward);
-            }
+            move.Go(Direction.Forward);
 
-            await Task.Delay(3000);
-            await Task.Delay(1000);
+            await Task.Delay(500);
             return !fwd;
         }
 
