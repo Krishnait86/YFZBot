@@ -61,7 +61,7 @@
             this.textBoxDescription.Size = new System.Drawing.Size(218, 50);
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
-            this.textBoxDescription.Text = "Ссылка на группу VK:\r\nhttps://vk.com/crossoutafkbot";
+            this.textBoxDescription.Text = "Ссылка на группу приложения VK:\r\nhttps://vk.com/crossoutafkbot";
             // 
             // labelCompanyName
             // 

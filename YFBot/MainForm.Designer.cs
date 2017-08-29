@@ -49,13 +49,14 @@
             // 
             this.LogicListBox.FormattingEnabled = true;
             this.LogicListBox.Items.AddRange(new object[] {
-            "сruiseLogic",
-            "defendLogic",
-            "customScript"});
+            "Cruise",
+            "Defend",
+            "Custom Script"});
             this.LogicListBox.Location = new System.Drawing.Point(12, 27);
             this.LogicListBox.Name = "LogicListBox";
             this.LogicListBox.Size = new System.Drawing.Size(149, 21);
             this.LogicListBox.TabIndex = 0;
+            this.LogicListBox.SelectionChangeCommitted += new System.EventHandler(this.LogicListBox_SelectionChangeCommitted);
             // 
             // buttonAction
             // 
@@ -114,6 +115,7 @@
             this.maskedTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.maskedTextBox.Size = new System.Drawing.Size(29, 20);
             this.maskedTextBox.TabIndex = 9;
+            this.maskedTextBox.Text = "27";
             this.maskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.maskedTextBox.ValidatingType = typeof(int);
             // 
@@ -153,19 +155,19 @@
             // loadScriptToolStripMenuItem
             // 
             this.loadScriptToolStripMenuItem.Name = "loadScriptToolStripMenuItem";
-            this.loadScriptToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadScriptToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.loadScriptToolStripMenuItem.Text = "Load Script...";
             this.loadScriptToolStripMenuItem.Click += new System.EventHandler(this.loadScript_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(139, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

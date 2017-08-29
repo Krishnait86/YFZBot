@@ -14,7 +14,7 @@ namespace YFBot
             move = new Move();
         }
 
-        public async Task<bool> cruiseLogic()
+        public async Task<bool> cruise()
         {
             move.Go(Direction.Forward);
 
@@ -22,7 +22,7 @@ namespace YFBot
             return true;
         }
 
-        public async Task<bool> defendLogic()
+        public async Task<bool> defend()
         {
             move.Go(Direction.Stop);
             move.Go(Direction.Forward);

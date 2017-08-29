@@ -59,7 +59,6 @@ namespace YFBot
                     if (scriptFileName != null)
                         scriptWorker.FileName = scriptFileName;
 
-
                     try { weaponTimer = Int32.Parse(maskedTextBox.Text); }
                     catch (FormatException) { weaponTimer = 0; }
 
@@ -103,13 +102,13 @@ namespace YFBot
 
                 switch (LogicListBox.SelectedItem)
                 {
-                    case "сruiseLogic":
-                        fwd = await strategy.cruiseLogic();
+                    case "Cruise":
+                        fwd = await strategy.cruise();
                         break;
-                    case "defendLogic":
-                        fwd = await strategy.defendLogic();
+                    case "Defend":
+                        fwd = await strategy.defend();
                         break;
-                    case "customScript":
+                    case "Custom Script":
                         fwd = await scriptWorker.LoadScript();
                         break;
                 }
@@ -141,12 +140,33 @@ namespace YFBot
         private void loadScript_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Open You Script";
+            openFileDialog.Title = "Open Your Script";
             openFileDialog.Filter = "TXT files|*.txt";
             openFileDialog.InitialDirectory = Environment.CurrentDirectory;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
                 scriptFileName = openFileDialog.FileName;
+                LogicListBox.SelectedIndex = 2;
+            }
+            buttonAction.Select();
+        }
+
+        private void LogicListBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (LogicListBox.SelectedIndex == 2)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Title = "Open Your Script";
+                openFileDialog.Filter = "TXT files|*.txt";
+                openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    scriptFileName = openFileDialog.FileName;
+                }
+            }
+            buttonAction.Select();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -169,5 +189,6 @@ namespace YFBot
         {
             Close();
         }
+
     }
 }
